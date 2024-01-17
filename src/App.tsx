@@ -24,7 +24,7 @@ function App() {
             <Route path={routes.board} element={<Board />} />
             <Route path={routes.boardDetail} element={<BoardDetail />} />
             <Route path={routes.boardWrite} element={<BoardWrite />} />
-            {/* <Route path={routes.boardEdit} element={<BoardWrite editMode />} /> */}
+            <Route path={routes.boardEdit} element={<BoardWrite editMode />} />
           </Route>
           <Route path={routes.profile} element={<Profile />} />
           <Route path={routes.login} element={<Login />} />

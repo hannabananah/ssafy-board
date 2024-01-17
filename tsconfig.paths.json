@@ -5,6 +5,7 @@
       "@pages/*": ["src/components/page/*"],
       "@commons/*": ["src/components/common/*"],
       "@home/*": ["src/components/home/*"],
+      "@board/*": ["src/components/board/*"],
       "@layouts/*": ["src/components/layout/*"],
       "@assets/*": ["src/assets/*"],
       "@routes/*": ["src/routes/*"],

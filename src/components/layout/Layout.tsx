@@ -23,14 +23,12 @@ export default function Layout() {
   // }, [setLoginUser]);
 
   return (
-    <>
-      <div className={"flex flex-col items-center min-h-screen"}>
-        <Header />
-        <div className="w-full m-[88px] p-10 max-w-screen-lg relativeF justify-self-center">
-          <Outlet />
-          <ScrollToTopButton />
-        </div>
+    <div className="flex flex-col items-center min-h-screen">
+      <Header />
+      <div className="w-full h-[calc(100%-88px)] m-[88px] px-10 max-w-screen-lg relative justify-self-center">
+        <Outlet />
+        <ScrollToTopButton />
       </div>
-    </>
+    </div>
   );
 }
