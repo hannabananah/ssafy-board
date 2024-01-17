@@ -11,13 +11,14 @@ import {
   NotFound,
 } from "@pages/.";
 import { Layout } from "@layouts/.";
-import { routes } from "@routes/.";
+import { routes, PrivateRoute, PublicRoute } from "@routes/.";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          {/* <Route element={<PrivateRoute />}> */}
           <Route path={routes.logout} element={<Logout />} />
           <Route path="/" element={<Layout />}>
             <Route path={routes.home} element={<Home />} />
@@ -27,8 +28,25 @@ function App() {
             <Route path={routes.boardEdit} element={<BoardWrite editMode />} />
           </Route>
           <Route path={routes.profile} element={<Profile />} />
-          <Route path={routes.login} element={<Login />} />
-          <Route path={routes.signup} element={<Signup />} />
+          {/* </Route> */}
+
+          <Route
+            path={routes.login}
+            element={
+              // <PublicRoute>
+              <Login />
+              // </PublicRoute>
+            }
+          />
+
+          <Route
+            path={routes.signup}
+            element={
+              // <PublicRoute>
+              <Signup />
+              // </PublicRoute>
+            }
+          />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
