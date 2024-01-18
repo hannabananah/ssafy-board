@@ -70,7 +70,7 @@ export default function SlideBoard() {
             speed={2000}
             slideToClickedSlide={true}
             spaceBetween={30}
-            slidesPerView={2}
+            slidesPerView={1}
             watchOverflow={true}
             slidesOffsetBefore={0}
             autoplay={{
@@ -80,6 +80,14 @@ export default function SlideBoard() {
             navigation={{
               prevEl: "#prev_slide",
               nextEl: "#next_slide",
+            }}
+            breakpoints={{
+              1024: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+                slidesPerGroupSkip: 1,
+                watchOverflow: false,
+              },
             }}
             onSwiper={(e: any) => {
               setSwiper(e);
