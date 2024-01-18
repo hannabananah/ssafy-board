@@ -26,8 +26,8 @@ function App() {
             <Route path={routes.boardDetail} element={<BoardDetail />} />
             <Route path={routes.boardWrite} element={<BoardWrite />} />
             <Route path={routes.boardEdit} element={<BoardWrite editMode />} />
+            <Route path={routes.profile} element={<Profile />} />
           </Route>
-          <Route path={routes.profile} element={<Profile />} />
           {/* </Route> */}
 
           <Route

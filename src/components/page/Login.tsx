@@ -62,7 +62,7 @@ export default function Login() {
 
   return (
     <div className="flex justify-center h-screen">
-      <div className="w-[360px] p-8 m-auto bg-opacity-40 hover:bg-opacity-50 h-[420px] bg-white-color rounded-xl backdrop-filter backdrop-blur-lg">
+      <div className="w-[360px] p-8 m-auto bg-opacity-40  h-[420px] bg-white-color rounded-xl backdrop-filter backdrop-blur-lg">
         <form
           onSubmit={handleSubmit(onValid)}
           className="flex flex-col justify-between h-full"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Boards } from "@type/.";
-import BoardCard from "@home/BoardCard";
+import { BoardCard } from "@home/.";
 import { getBoardList } from "@apis/boardApi";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@commons/.";
