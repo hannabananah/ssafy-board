@@ -12,7 +12,7 @@ export default function PublicRoute({
   const { isAuth } = CheckToken(location.key);
 
   if (isAuth === "Success") {
-    return <Navigate to="/user/login" />;
+    return <Navigate to="/login" />;
   } else if (isAuth === "Loading") {
     return <LoadingModal />;
   }

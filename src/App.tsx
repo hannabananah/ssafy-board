@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   Login,
@@ -12,8 +13,50 @@ import {
 } from "@pages/.";
 import { Layout } from "@layouts/.";
 import { routes, PrivateRoute, PublicRoute } from "@routes/.";
+import axios from "axios";
+import { useUserStore } from "@stores/useUserStore";
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState({});
+
+  const accessToken = () => {
+    axios({
+      url: "/accesstoken",
+      method: "GET",
+      withCredentials: true,
+    });
+  };
+
+  const refreshToken = () => {
+    axios({
+      url: "/refreshtoken",
+      method: "GET",
+      withCredentials: true,
+    });
+  };
+
+  useEffect(() => {
+    try {
+      axios({
+        url: "/login/success",
+        method: "GET",
+        withCredentials: true,
+      })
+        .then((result) => {
+          if (result.data[0]) {
+            setIsLogin(true);
+            setUser(result.data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
     <>
       <BrowserRouter>
@@ -34,7 +77,7 @@ function App() {
             path={routes.login}
             element={
               // <PublicRoute>
-              <Login />
+              <Login setUser={setUser} setIsLogin={setIsLogin} />
               // </PublicRoute>
             }
           />

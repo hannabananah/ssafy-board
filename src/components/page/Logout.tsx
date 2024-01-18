@@ -44,7 +44,7 @@ export default function Logout() {
 
   return (
     <>
-      <Link to="/user/login" />
+      <Link to="/login" />
     </>
   );
 }

@@ -1,7 +1,30 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "@assets/images/logo.svg";
+import { useUserStore } from "@stores/useUserStore";
 
 export default function Header() {
+  const { isLogin, user } = useUserStore();
+  const [loginContent, setLoginContent] = useState(
+    <Link to="/login" className="w-10 p-8 ml-4 text-white-color">
+      Login
+    </Link>
+  );
+  console.log("isLogin", isLogin);
+  useEffect(() => {
+    if (isLogin) {
+      setLoginContent(
+        <h3 className="w-10 p-8 ml-4 text-white-color">{user?.username}</h3>
+      );
+    } else {
+      setLoginContent(
+        <Link to="/login" className="w-10 p-8 ml-4 text-white-color">
+          Login
+        </Link>
+      );
+    }
+  }, [isLogin, user]);
+
   return (
     <header className="fixed top-0 flex w-full shadow-md h-18 bg-primary-color z-[999]">
       <div className="relative flex justify-between flex-1 w-full max-w-screen-lg px-10 mx-auto shadow-b-md">
@@ -15,9 +38,7 @@ export default function Header() {
           <Link to="/profile" className="w-10 p-8 ml-4 text-white-color">
             Profile
           </Link>
-          <Link to="/user/login" className="w-10 p-8 ml-4 text-white-color">
-            Login
-          </Link>
+          {loginContent}
         </nav>
       </div>
     </header>

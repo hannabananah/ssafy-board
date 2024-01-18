@@ -22,7 +22,7 @@ export default function ScrollToTopButton() {
   }, []);
 
   // 로그인 페이지에서는 안보이도록
-  if (window.location.pathname === "/user/login") return null;
+  if (window.location.pathname === "/login") return null;
   return (
     <>
       {showButton && (

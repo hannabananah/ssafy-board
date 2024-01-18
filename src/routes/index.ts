@@ -3,7 +3,7 @@ import PublicRoute from "@routes/PublicRoute";
 
 const routes = {
   home: "/",
-  login: "/user/login",
+  login: "/login",
   signup: "/signup",
   logout: "/logout",
   profile: "/profile",
