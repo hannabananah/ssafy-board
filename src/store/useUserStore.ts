@@ -1,24 +1,23 @@
 import { create } from "zustand";
 
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-}
-
 interface UserStore {
   isLogin: boolean;
-  user: User | null;
+  user: {
+    userid: string;
+    username: string;
+  } | null;
   setIsLogin: (isLogin: boolean) => void;
-  setUser: (user: User) => void;
-  logout: () => void;
+  setUser: (
+    userData: {
+      userid: string;
+      username: string;
+    } | null
+  ) => void;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
   isLogin: false,
   user: null,
   setIsLogin: (isLogin) => set({ isLogin }),
-  setUser: (user) => set({ user }),
-  logout: () => set({ isLogin: false, user: null }),
+  setUser: (userData) => set({ user: userData, isLogin: true }),
 }));

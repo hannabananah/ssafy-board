@@ -22,7 +22,7 @@ interface FormData {
   password: string;
 }
 
-export default function LogSignupin() {
+export default function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
