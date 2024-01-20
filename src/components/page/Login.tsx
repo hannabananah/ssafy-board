@@ -3,19 +3,19 @@ import { useNavigate } from "react-router";
 
 import axios from "axios";
 import { useUserStore } from "@stores/useUserStore";
+import { useLoginForm } from "@hooks/.";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [userid, setUserid] = useState("");
-  const [password, setPassword] = useState("");
+
+  const [userid, onChangeId] = useLoginForm();
+  const [password, onChangePw] = useLoginForm();
   const { setIsLogin, setUser } = useUserStore();
+  const [isInputValid, setIsInputValid] = useState(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
 
-  const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserid(e.target.value);
-  };
-
-  const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const handleInputValidation = () => {
+    setIsInputValid(userid.length > 0 && password.length > 0);
   };
 
   const handleClickSignIn = () => {
@@ -39,6 +39,7 @@ export default function Login() {
       })
       .catch((error) => {
         console.error("Login error:", error);
+        setLoginError("로그인에 실패했습니다. 다시 시도해주세요.");
       });
   };
 
@@ -51,7 +52,7 @@ export default function Login() {
 
   return (
     <div className="flex justify-center h-screen">
-      <div className="w-[360px] p-8 m-auto bg-opacity-40 hover:bg-opacity-50 h-[380px] bg-white-color rounded-xl backdrop-filter backdrop-blur-lg">
+      <div className="w-[360px] p-8 m-auto bg-opacity-50 h-[380px] bg-white-color rounded-xl backdrop-filter backdrop-blur-lg">
         <div className="flex flex-col justify-between h-full">
           <div className="flex flex-col gap-10">
             <span className="text-4xl font-extrabold text-center text-black-color">
@@ -64,26 +65,39 @@ export default function Login() {
                     type="userid"
                     placeholder="아이디"
                     className="w-full h-10 p-2 border rounded border-light-gray-color"
-                    onChange={onChangeId}
+                    onChange={(e) => {
+                      onChangeId(e);
+                      handleInputValidation();
+                    }}
                     value={userid}
                   />
                   <input
                     type="password"
                     placeholder="비밀번호"
                     className="w-full h-10 p-2 border rounded border-light-gray-color"
-                    onChange={onChangePw}
+                    onChange={(e) => {
+                      onChangePw(e);
+                      handleInputValidation();
+                    }}
                     value={password}
                   />
                 </div>
                 <button
                   type="button"
-                  className="w-24 p-2 rounded cursor-pointer bg-primary-light-color text-white-color hover:bg-primary-color"
+                  className={`w-24 p-2 rounded cursor-pointer ${
+                    isInputValid
+                      ? "bg-primary-color text-white-color"
+                      : "bg-primary-light-color text-white-color hover:bg-primary-color"
+                  }`}
                   onClick={handleClickSignIn}
                 >
                   로그인
                 </button>
               </div>
             </form>
+            {loginError && (
+              <div className="text-sm text-red-500">{loginError}</div>
+            )}
           </div>
           <button
             onClick={handleClickSignUp}

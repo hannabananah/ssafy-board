@@ -14,7 +14,8 @@
       "@utils/*": ["src/utils/*"],
       "@apis/*": ["src/api/*"],
       "@auth/*": ["src/auth/*"],
-      "@storage/*": ["src/storage/*"]
+      "@storage/*": ["src/storage/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   }
 }
