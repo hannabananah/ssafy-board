@@ -15,6 +15,7 @@ import { Layout } from "@layouts/.";
 import { routes } from "@routes/.";
 import axios from "axios";
 import { useUserStore } from "@stores/useUserStore";
+import { PrivateRoute } from "@routes/.";
 
 function App() {
   const { setIsLogin, setUser } = useUserStore();
@@ -52,35 +53,23 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route element={<PrivateRoute />}> */}
-          <Route path={routes.logout} element={<Logout />} />
-          <Route path="/" element={<Layout />}>
-            <Route path={routes.home} element={<Home />} />
-            <Route path={routes.board} element={<Board />} />
-            <Route path={routes.boardDetail} element={<BoardDetail />} />
-            <Route path={routes.boardWrite} element={<BoardWrite />} />
-            <Route path={routes.boardEdit} element={<BoardWrite editMode />} />
-            <Route path={routes.profile} element={<Profile />} />
+          <Route path={routes.login} element={<Login />} />
+          <Route path={routes.signup} element={<Signup />} />
+
+          <Route element={<PrivateRoute />}>
+            <Route path={routes.logout} element={<Logout />} />
+            <Route path="/" element={<Layout />}>
+              <Route path={routes.home} element={<Home />} />
+              <Route path={routes.board} element={<Board />} />
+              <Route path={routes.boardDetail} element={<BoardDetail />} />
+              <Route path={routes.boardWrite} element={<BoardWrite />} />
+              <Route
+                path={routes.boardEdit}
+                element={<BoardWrite editMode />}
+              />
+              <Route path={routes.profile} element={<Profile />} />
+            </Route>
           </Route>
-          {/* </Route> */}
-
-          <Route
-            path={routes.login}
-            element={
-              // <PublicRoute>
-              <Login />
-              // </PublicRoute>
-            }
-          />
-
-          <Route
-            path={routes.signup}
-            element={
-              // <PublicRoute>
-              <Signup />
-              // </PublicRoute>
-            }
-          />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

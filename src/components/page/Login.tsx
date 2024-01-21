@@ -34,7 +34,7 @@ export default function Login() {
 
           setIsLogin(true);
           setUser(userData);
-          navigate("/");
+          navigate("/main");
         }
       })
       .catch((error) => {

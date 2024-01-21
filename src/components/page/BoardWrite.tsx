@@ -46,7 +46,7 @@ export default function BoardWrite({ editMode }: Props) {
       .then((data) => {
         if (data.status === "success") {
           alert(data.message);
-          navigate("/");
+          navigate("/main");
         }
       })
       .catch(alert);

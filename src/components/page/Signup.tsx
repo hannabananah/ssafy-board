@@ -57,7 +57,7 @@ export default function Signup() {
             cancelButtonColor: "#efefef",
             showConfirmButton: true,
           }).then(() => {
-            navigate("/");
+            navigate("/main");
           });
         }
       })

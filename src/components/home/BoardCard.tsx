@@ -1,5 +1,6 @@
 import { Board } from "@type/.";
 import { Link } from "react-router-dom";
+import { useUserStore } from "@stores/useUserStore";
 
 interface Props {
   board: Board;
@@ -7,7 +8,7 @@ interface Props {
 }
 
 export default function BoardCard({ board }: Props) {
-  const { id, thumbnail, author, createdAt, content, title } = board;
+  const { id, author, thumbnail, createdAt, content, title } = board;
 
   return (
     <div className="flex flex-col justify-between p-4 border shadow-md bg-white-color rounded-2xl">

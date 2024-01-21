@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 flex w-full shadow-md h-18 bg-primary-color z-[999]">
       <div className="relative flex justify-between flex-1 w-full max-w-screen-lg px-10 mx-auto shadow-b-md">
-        <Link to="/" className="flex justify-start w-40 h-auto">
+        <Link to="/main" className="flex justify-start w-40 h-auto">
           <img src={Logo} alt="로고" />
         </Link>
         <nav className="flex items-center justify-end">
@@ -22,7 +22,7 @@ export default function Header() {
               </Link>
             </>
           ) : (
-            <Link to="/login" className="px-4 py-8 ml-4 text-white-color">
+            <Link to="/" className="px-4 py-8 ml-4 text-white-color">
               Login
             </Link>
           )}

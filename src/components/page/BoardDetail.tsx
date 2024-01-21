@@ -32,7 +32,7 @@ export default function BoardDetail() {
       .then((data) => {
         if (data.status === "success") {
           alert(data.message);
-          navigate("/");
+          navigate("/main");
         }
       })
       .catch(alert);
@@ -50,7 +50,7 @@ export default function BoardDetail() {
 
   if (!board) return <div>게시물이 없습니다.</div>;
 
-  const { createdAt, updatedAt, content, title } = board;
+  const { createdAt, author, updatedAt, content, title } = board;
   return (
     <>
       <div className="flex flex-col items-center h-full p-10 mx-auto">
@@ -58,7 +58,7 @@ export default function BoardDetail() {
         <div className="flex bg-white-color rounded-xl flex-col w-10/12 h-[600px] p-10 shadow-md">
           <h1 className="text-4xl font-bold">{title}</h1>
           <div className="flex justify-between mt-4">
-            <div className="mb-5 text-dark-gray-color">by {user?.username}</div>
+            <div className="mb-5 text-dark-gray-color">by {author}</div>
             <div className="text-dark-gray-color ">{createdAt}</div>
           </div>
           <div className="flex-grow text-lg">{content}</div>
