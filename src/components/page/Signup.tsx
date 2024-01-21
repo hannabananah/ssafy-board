@@ -13,15 +13,28 @@ const MySwal = withReactContent(Swal);
 export default function Signup() {
   const navigate = useNavigate();
 
-  const [userid, onChangeId] = useLoginForm();
-  const [password, onChangePw] = useLoginForm();
-  const [password2, onChangePw2] = useLoginForm();
-  const [username, onChangeName] = useLoginForm();
+  const [userid, setUserId, onChangeId] = useLoginForm();
+  const [password, setPw, onChangePw] = useLoginForm();
+  const [password2, setPw2, onChangePw2] = useLoginForm();
+  const [username, setUsername, onChangeName] = useLoginForm();
   const { setIsLogin, setUser } = useUserStore();
 
   const handleClickSignUp = () => {
+    if (password !== password2) {
+      MySwal.fire({
+        title: "비밀번호가 일치하지 않습니다.",
+        text: "다시 시도해주세요.",
+        icon: "warning",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      setPw("");
+      setPw2("");
+      return;
+    }
+
     axios({
-      url: "/login",
+      url: "/signup",
       method: "POST",
       withCredentials: true,
       data: {
@@ -31,37 +44,41 @@ export default function Signup() {
       },
     })
       .then((result) => {
-        if (result.status === 200) {
+        if (result.status === 201) {
           const userData = result.data;
-
           setIsLogin(true);
           setUser(userData);
-          navigate("/");
+
+          MySwal.fire({
+            title: "회원가입을 완료하였습니다!",
+            text: "메인페이지로 이동합니다.",
+            icon: "success",
+            confirmButtonColor: "#93dffa",
+            cancelButtonColor: "#efefef",
+            showConfirmButton: true,
+          }).then(() => {
+            navigate("/");
+          });
         }
       })
       .catch((error) => {
         console.error("Signup error:", error);
+
+        if (error.response && error.response.status === 400) {
+          MySwal.fire({
+            title: "이미 존재하는 아이디입니다.",
+            text: "다른 아이디를 입력해주세요.",
+            icon: "warning",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          setUserId("");
+          setPw("");
+          setPw2("");
+          setUsername("");
+        }
       });
   };
-
-  // const handleClickSignUp = (
-  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  // ) => {
-  //   e.preventDefault();
-  //   // 회원가입 양식충족
-  //   MySwal.fire({
-  //     title: "회원가입을 완료하시겠습니까?",
-  //     text: "메인페이지로 이동합니다.",
-  //     icon: "success",
-  //     // iconColor: "#6dcef5",
-  //     confirmButtonColor: "#93dffa",
-  //     cancelButtonColor: "#efefef",
-  //     showConfirmButton: true,
-  //     timer: 2000,
-  //   }).then(() => {
-  //     navigate("/");
-  //   });
-  // };
 
   return (
     <div className="flex justify-center h-screen">

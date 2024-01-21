@@ -5,5 +5,5 @@ export default function useLoginForm() {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
-  return [value, onChange] as const;
+  return [value, setValue, onChange] as const;
 }

@@ -8,8 +8,8 @@ import { useLoginForm } from "@hooks/.";
 export default function Login() {
   const navigate = useNavigate();
 
-  const [userid, onChangeId] = useLoginForm();
-  const [password, onChangePw] = useLoginForm();
+  const [userid, setUserId, onChangeId] = useLoginForm();
+  const [password, setPw, onChangePw] = useLoginForm();
   const { setIsLogin, setUser } = useUserStore();
   const [isInputValid, setIsInputValid] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
