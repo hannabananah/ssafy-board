@@ -1,46 +1,44 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
 
+### `yarn install`
+
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 프로젝트 기술 스택
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. **Tailwind CSS (tailwindcss)**:
 
-### `yarn test`
+   - 클래스 기반의 스타일 지정으로 변수명을 고민하지 않아도 되고 빠르고 유연한 스타일링이 가능함.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Zustand (zustand)**:
 
-### `yarn build`
+   - 간결하고 간단하면서도 효과적으로 리액트 상태 관리를 제공하고 Redux 등에 비해 더 경량하고 직관적인 API를 제공하기 때문에 사용.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **JWT Decode (jwt-decode)**:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   - 간편하고 확장성이 뛰어나며 토큰 자체에 정보를 포함하고 있어 데이터베이스 조회를 최소화하고 효율적인 인증 프로세스를 구현할 수 있기 때문에 사용.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **SweetAlert2 (sweetalert2, sweetalert2-react-content)**:
 
-### `yarn eject`
+   - 모달 라이브러리로, 간단한 사용법으로 UI가 예쁘고 깔끔하게 구현가능 또한 사용자 인터렉션도 제공하기 때문에 적용.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+5. **Swiper (swiper)**:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   - 슬라이드 라이브러리로, 스와이프 기능이나 반응형, 페이지네이션 등 사용이 간단하면서도 커스텀이 가능.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+6. **Create React App (CRA, react-scripts)**:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   - 초기 설정이 간편하고 사용자 친화적인 구성을 제공, 또한 vite등 다른 빌드 툴보다 소규모의 작업에 특화되어 있다고 생각하여 사용.
 
-## Learn More
+7. **TypeScript**:
+   - 코드의 가독성을 향상시키고 런타임 에러를 사전에 방지할 수 있음 또란 휴먼에러 방지를 통해 개발의 생산성을 높일 수 있음
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+etc.
+
+**절대경로 설정**: 코드의 가독성을 향상시키고, 파일 이동이나 경로 변경 시에 상대경로를 일일이 수정하는 번거로움을 줄일 수 있음
+
+**다양한 에러처리, 로딩 중 표시, scroll to top, 404에러 페이지 등**: UX를 개선하기 위한 처리
