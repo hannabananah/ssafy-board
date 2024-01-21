@@ -49,7 +49,7 @@ export const loginUser = async (
     body: JSON.stringify(credentials),
   };
 
-  const data = await getPromise("/user/login", option).catch(() => {
+  const data = await getPromise("/login", option).catch(() => {
     return statusError;
   });
 
@@ -128,7 +128,7 @@ export const requestToken = async (
     body: JSON.stringify({ refresh_token: refreshToken }),
   };
 
-  const data = await getPromise("/user/login", option).catch(() => {
+  const data = await getPromise("/login", option).catch(() => {
     return statusError;
   });
 

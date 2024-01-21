@@ -2,19 +2,20 @@ interface Props {
   type: "button" | "submit";
   children: React.ReactNode;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  disabled?: boolean;
   size?: string;
+  border?: boolean;
+  filled?: boolean;
 }
+
 export default function Button({
   type,
   children,
   onClick,
-  disabled = false,
   size = "w-full",
+  border = false,
+  filled = false,
 }: Props) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (disabled) return;
-
     onClick(e);
   };
 
@@ -22,12 +23,10 @@ export default function Button({
     <button
       type={type}
       onClick={handleClick}
-      disabled={disabled}
-      className={`${size} p-2 rounded-lg text-sm border-none text-white-color ${
-        disabled
-          ? "bg-dark-gray-color cursor-not-allowed"
-          : "bg-black-color cursor-pointer"
-      }`}
+      className={`${size} p-2 rounded-lg text-sm ${
+        border &&
+        "bg-white-color border border-primary-color text-primary-color"
+      } ${filled && "bg-primary-color text-white-color"}`}
     >
       {children}
     </button>

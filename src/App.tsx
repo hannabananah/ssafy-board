@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   Login,
@@ -11,9 +12,42 @@ import {
   NotFound,
 } from "@pages/.";
 import { Layout } from "@layouts/.";
-import { routes, PrivateRoute, PublicRoute } from "@routes/.";
+import { routes } from "@routes/.";
+import axios from "axios";
+import { useUserStore } from "@stores/useUserStore";
 
 function App() {
+  const { setIsLogin, setUser } = useUserStore();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios({
+          url: "/accessToken",
+          method: "GET",
+          withCredentials: true,
+        });
+
+        if (result.status === 200) {
+          setIsLogin(true);
+          setUser(result.data);
+        }
+      } catch (error) {
+        console.log("토큰 인증");
+        setIsLogin(false);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [setIsLogin, setUser]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <BrowserRouter>

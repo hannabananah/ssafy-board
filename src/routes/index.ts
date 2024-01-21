@@ -1,9 +1,6 @@
-import PrivateRoute from "@routes/PrivateRoute";
-import PublicRoute from "@routes/PublicRoute";
-
 const routes = {
   home: "/",
-  login: "/user/login",
+  login: "/login",
   signup: "/signup",
   logout: "/logout",
   profile: "/profile",
@@ -13,4 +10,4 @@ const routes = {
   boardEdit: "/boards/:id/edit",
 };
 
-export { routes, PrivateRoute, PublicRoute };
+export { routes };
