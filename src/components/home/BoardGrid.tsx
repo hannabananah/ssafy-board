@@ -35,10 +35,9 @@ export default function BoardGrid() {
   };
 
   return (
-    <div className="relative mx-auto">
-      <h1 className="mb-5 text-2xl font-bold">게시판 리스트</h1>
+    <div className="relative py-10 mx-auto">
       <div className="w-full mb-3 text-right">
-        <Button type="button" onClick={handleClick} size="w-16">
+        <Button type="button" onClick={handleClick} size="w-16" border>
           등록
         </Button>
       </div>

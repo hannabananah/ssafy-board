@@ -12,11 +12,13 @@ export default function BoardCard({ board }: Props) {
   return (
     <div className="flex flex-col justify-between p-4 border shadow-md bg-white-color rounded-2xl">
       <div>
-        <img
-          src={thumbnail}
-          alt="Thumbnail"
-          className="object-cover w-full h-40 mb-4 rounded-md"
-        />
+        <Link to={`/boards/${id}`}>
+          <img
+            src={thumbnail}
+            alt="Thumbnail"
+            className="object-cover w-full h-40 mb-4 rounded-md"
+          />
+        </Link>
         <div className="flex items-center mb-2">
           <span className="text-sm text-dark-gray-color">{author}</span>
           <span className="ml-auto text-sm text-dark-gray-color">
@@ -33,7 +35,7 @@ export default function BoardCard({ board }: Props) {
 
       <Link
         to={`/boards/${id}`}
-        className="p-2 mt-4 text-center rounded-md text-white-color bg-dark-gray-color"
+        className="p-2 mt-4 text-center rounded-md text-white-color bg-primary-color"
       >
         Read More
       </Link>

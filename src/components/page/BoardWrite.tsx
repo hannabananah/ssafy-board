@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createBoard, updateBoard } from "@apis/boardApi";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@commons/.";
+import { useUserStore } from "@stores/useUserStore";
 
 interface Props {
   editMode?: boolean;
@@ -9,10 +10,12 @@ interface Props {
 
 // Fixme : 수정 & 생성 로직 리펙토링 필요
 export default function BoardWrite({ editMode }: Props) {
+  const { user } = useUserStore();
+
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    username: "",
+    username: user?.username,
   });
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,7 +28,7 @@ export default function BoardWrite({ editMode }: Props) {
       setFormData({
         title: board.title,
         content: board.content,
-        username: board.username,
+        username: user?.username,
       });
     }
   }, []);
@@ -69,59 +72,65 @@ export default function BoardWrite({ editMode }: Props) {
 
   return (
     <>
-      <h1 className="mb-5 text-2xl font-bold">
-        {editMode ? "게시판 수정" : "게시판 생성"}
-      </h1>
-      <form>
-        <div className="flex mb-6">
-          <label className="mr-2" htmlFor="title">
-            제목
-          </label>
-          <input
-            className="flex-grow"
-            onChange={handleChange}
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-          />
+      <div className="flex flex-col items-center h-full p-10 mx-auto">
+        <h1 className="mb-5 text-2xl font-bold">
+          {editMode ? "게시판 수정" : "게시판 생성"}
+        </h1>
+        <div className="flex bg-white-color justify-center rounded-xl flex-col w-10/12 h-[600px] p-10 shadow-md">
+          <form className="flex flex-col gap-4">
+            <div className="flex gap-4">
+              <label className="text-lg font-bold" htmlFor="title">
+                제목
+              </label>
+              <input
+                className="flex-grow bg-transparent border-b focus:outline-none border-b-primary-light-color"
+                onChange={handleChange}
+                type="text"
+                id="title"
+                name="title"
+                value={formData.title}
+              />
+            </div>
+            <div className="flex gap-4">
+              <label className="text-lg font-bold" htmlFor="username">
+                이름
+              </label>
+              <input
+                className="flex-grow bg-transparent border-b focus:outline-none border-b-primary-light-color"
+                onChange={handleChange}
+                type="text"
+                id="username"
+                name="username"
+                readOnly
+                value={formData.username}
+              />
+            </div>
+            <div className="flex gap-4">
+              <label className="text-lg font-bold" htmlFor="content">
+                내용
+              </label>
+              <textarea
+                className="flex-grow px-5 py-2 bg-transparent border resize-none h-80 focus:outline-none border-primary-light-color rounded-xl"
+                onChange={handleChange}
+                id="content"
+                name="content"
+                value={formData.content}
+              />
+            </div>
+          </form>
+          <div className="flex justify-center mt-5">
+            {editMode ? (
+              <Button type="submit" size="w-1/2" onClick={handleEdit} filled>
+                수정
+              </Button>
+            ) : (
+              <Button type="submit" size="w-1/2" onClick={handleCreate} filled>
+                생성
+              </Button>
+            )}
+          </div>
         </div>
-        <div className="flex mb-6">
-          <label className="mr-2" htmlFor="username">
-            이름
-          </label>
-          <input
-            className="flex-grow"
-            onChange={handleChange}
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-          />
-        </div>
-
-        <div className="flex mb-6">
-          <label className="mr-2 " htmlFor="content">
-            내용
-          </label>
-          <textarea
-            className="flex-grow resize-none h-80"
-            onChange={handleChange}
-            id="content"
-            name="content"
-            value={formData.content}
-          />
-        </div>
-      </form>
-      {editMode ? (
-        <Button type="submit" onClick={handleEdit}>
-          수정
-        </Button>
-      ) : (
-        <Button type="submit" onClick={handleCreate}>
-          생성
-        </Button>
-      )}
+      </div>
     </>
   );
 }

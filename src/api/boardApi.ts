@@ -64,7 +64,7 @@ export const createBoard = async ({
 }: {
   title: string;
   content: string;
-  username: string;
+  username: string | undefined;
 }) => {
   try {
     const response = await axios.post("/api/boards", {

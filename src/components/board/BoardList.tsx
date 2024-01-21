@@ -31,7 +31,7 @@ export default function BoardList() {
 
   return (
     <>
-      <div className="relative mx-auto">
+      <div className="relative py-10 mx-auto">
         <h1 className="mb-5 text-2xl font-bold">게시판 리스트</h1>
         <div className="flex items-center justify-between mb-2">
           <p>게시물 수: {boards.length}</p>
